@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -12,28 +11,9 @@ public class MainView {
 
 	public static final Font defaultFont = new Font("Tahoma", Font.PLAIN, 14);
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTabbedPane tabs;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainView window = new MainView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public MainView() {
 		initialize();
 	}

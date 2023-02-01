@@ -11,7 +11,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controllers.DatabaseController;
+import models.DataTable;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -50,7 +50,7 @@ public class BookTab {
 	private JTable table;
 	private DefaultTableModel model = null;
 	private JInternalFrame dataFrame, addSection, deleteSection, updateSection;
-	private DatabaseController bookManager = new DatabaseController("Book");
+	private DataTable bookManager = new DataTable("Book");
 
 	private JCheckBox invertRowColumnCheck;
 	private JTextField orderBy;

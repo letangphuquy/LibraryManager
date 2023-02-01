@@ -15,7 +15,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controllers.DatabaseController;
+import models.DataTable;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,7 +44,7 @@ public class LendTab {
 	private JTable table;
 	private DefaultTableModel model;
 	private static final String COLUMN_NAMES[] = { "Student ID", "Book ID", "Lent Time" };
-	private DatabaseController lendManager = new DatabaseController("Lend");
+	private DataTable lendManager = new DataTable("Lend");
 	private Date currrenDate;
 
 	private JSplitPane splitPane;

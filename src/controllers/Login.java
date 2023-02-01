@@ -1,7 +1,7 @@
 package controllers;
 
-public class AuthController {
-	public AuthController() {
+public class Login {
+	public Login() {
 		
 	}
 	public static boolean login(String username, String password) {

@@ -1,4 +1,4 @@
-package controllers;
+package models;
 //update: changed String to StringBuffer for efficiency
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-public class DatabaseController {
+public class DataTable {
 	public final static String DBNAME = "LibMgmt";
     public final static String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public final static String URL = "jdbc:sqlserver://localhost:1433;databaseName=" + DBNAME + ";encrypt=true;trustServerCertificate=true";
@@ -55,7 +55,7 @@ public class DatabaseController {
 		this.model = model;
 	}
 
-	public DatabaseController(String tableName) {
+	public DataTable(String tableName) {
 		setTableName(tableName);
 		connection = getConnection();
 		System.out.println("Connected! " + connection);
@@ -69,7 +69,7 @@ public class DatabaseController {
     		System.out.println("Registered successfully");
             return DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Lỗi Kết Nối");
+            System.out.println("Could not connect");
             e.printStackTrace();
         }
         return null;
@@ -175,10 +175,4 @@ public class DatabaseController {
     	}
     	return false;
     }
-    
-//    void test(List<Object> data) {
-//    	String[] args = new String[10];
-//    	data.add(new Object(args));
-//    }
-    
 }

@@ -13,7 +13,7 @@ public class Book {
 	}
 
 	public Book() {
-		id = "Xin chào ";
+		id = "DEBUG";
 	}
 	
 	public String getId() {

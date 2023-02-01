@@ -1,5 +1,4 @@
 package views;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,61 +8,32 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
-import controllers.AuthController;
+import controllers.Login;
+import controllers.Main;
+import controllers.Main.Window;
 
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginView {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField usernameTextfield;
 	private JTextField passwordTextfield;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginView window = new LoginView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public LoginView() {
 		initialize();
 	}
 	
-	public void close() {
-		frame.setVisible(false); //you can't see me!
-		frame.dispose(); //Destroy the JFrame object
-	}
-
-	void viewMain() {
-//		MainView.main();
-		MainView.main();
-		close();
-	}
-
 	void checkLogin() {
 		String username = usernameTextfield.getText();
 		String password = passwordTextfield.getText();
-		boolean feedback = AuthController.login(username, password);
-		if (feedback) viewMain();
-		else JOptionPane.showMessageDialog(frame, "Wrong credentials!", "title", 0);
+		boolean feedback = Login.login(username, password);
+		if (feedback) Main.openView(Window.MAIN);
+		else JOptionPane.showMessageDialog(frame, "Wrong credentials!", "Failed", 0);
 	};
 	
 	/**
@@ -72,7 +42,7 @@ public class LoginView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Book management app for school libraries - Login");
-		frame.setBounds(100, 100, 690, 472);
+		frame.setBounds(100, 100, 720, 480);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,23 +76,18 @@ public class LoginView {
 		title.setBounds(229, 67, 240, 71);
 		frame.getContentPane().add(title);
 		
-		JButton btnNewButton = new JButton("Login!");
-		btnNewButton.setMnemonic('l');
-		btnNewButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == 10) checkLogin();
-			}
-		});
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		//https://stackoverflow.com/questions/440209/how-do-i-assign-enter-as-the-trigger-key-of-all-jbuttons-in-my-java-application
+		UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
+		JButton loginButton = new JButton("Login!");
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				checkLogin();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(289, 344, 131, 44);
-		frame.getContentPane().add(btnNewButton);
+		loginButton.setMnemonic('l');
+		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		loginButton.setBounds(289, 344, 131, 44);
+		frame.getContentPane().add(loginButton);
 	}
 
 }
