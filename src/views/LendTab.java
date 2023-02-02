@@ -29,11 +29,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Timestamp;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import java.util.concurrent.TimeUnit;
 
@@ -284,32 +280,16 @@ public class LendTab {
 		lendPanel.add(bookTextfield);
 
 		lendButton = new JButton("Lend");
-		lendButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					lendBook();
-			}
-		});
-		lendButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		lendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				lendBook();
 			}
 		});
 		lendPanel.add(lendButton);
 
 		returnButton = new JButton("Return");
-		returnButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					returnBook();
-			}
-		});
-		returnButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				returnBook();
 			}
 		});
@@ -332,9 +312,8 @@ public class LendTab {
 		lendPanel.add(timeLabel);
 
 		JButton resetButton = new JButton("-");
-		resetButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				pane.setDividerLocation(0.4);
 				splitPane.setDividerLocation(0.5);
 			}

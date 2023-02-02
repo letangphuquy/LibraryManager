@@ -68,7 +68,6 @@ public class LoginView {
 		passwordTextfield = new JPasswordField();
 		passwordTextfield.setColumns(10);
 		passwordTextfield.setBounds(265, 271, 294, 44);
-//		passwordTextfield.setEc
 		frame.getContentPane().add(passwordTextfield);
 		
 		JLabel title = new JLabel("PQ Library manager");

@@ -29,8 +29,6 @@ import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
@@ -479,13 +477,6 @@ public class BookTab {
 		addSection.getContentPane().add(quantityTextfield);
 
 		JButton addButton = new JButton("Add!");
-		addButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == 10)
-					addBook();
-			}
-		});
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addBook();
@@ -497,16 +488,8 @@ public class BookTab {
 		addSection.setVisible(true);
 
 		updateButton = new JButton("Update\r\n");
-		updateButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					updateBook();
-			}
-		});
-		updateButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		updateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				updateBook();
 			}
 		});
@@ -600,23 +583,14 @@ public class BookTab {
 		deleteInstruction.setFont(MainView.defaultFont);
 
 		deleteButton = new JButton("Delete");
-		deleteButton.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					removeBooks();
-			}
-		});
-		deleteButton.setBounds(56, 96, 89, 36);
-		deleteSection.getContentPane().add(deleteButton);
-		deleteButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				removeBooks();
 			}
 		});
+		deleteButton.setBounds(56, 96, 89, 36);
 		deleteButton.setFont(MainView.defaultFont);
+		deleteSection.getContentPane().add(deleteButton);
 		deleteSection.setVisible(true);
 	}
-
 }
