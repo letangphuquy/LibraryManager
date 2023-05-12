@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.event.ChangeListener;
@@ -234,9 +235,17 @@ public class BookTab {
 			return;
 		lastKeyword = curKeyword;
 		if (curKeyword.indexOf("-") != -1 || curKeyword.indexOf("'") != -1) {
-			JOptionPane.showConfirmDialog(desk, "You are not allowed to type in ', or -", "SQL Injection Alert!",
-					JOptionPane.CLOSED_OPTION);
-			searchTextfield.setText("");
+			//https://stackoverflow.com/questions/15206586/getting-attempt-to-mutate-notification-exception
+			Runnable resetBar = new Runnable() {
+		        @Override
+		        public void run() {
+		            // your highlight code
+		        	JOptionPane.showConfirmDialog(desk, "You are not allowed to type in ', or -", "SQL Injection Alert!",
+		        			JOptionPane.CLOSED_OPTION);
+		        	searchTextfield.setText("");
+		        }
+		    };       
+		    SwingUtilities.invokeLater(resetBar);
 			return;
 		}
 		if (isSorting)

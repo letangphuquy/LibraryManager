@@ -93,7 +93,7 @@ public class LendTab {
 		keys.add("bookID");
 		values.add(student);
 		values.add(book);
-		int option = JOptionPane.showConfirmDialog(pane, "Confirm student " + student + " returns book " + book + "?",
+		int option = JOptionPane.showConfirmDialog(pane, "Confirm student '" + student + "' returns book '" + book + "'?",
 				null, JOptionPane.YES_NO_OPTION);
 		if (option != JOptionPane.YES_OPTION)
 			return;
@@ -334,7 +334,7 @@ public class LendTab {
 		listButton = new JButton("List overdue lend\r\ns");
 		listButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.getRowCount();
+//				model.getRowCount();
 				table.setBackground(Color.YELLOW);
 				table.setForeground(Color.RED);
 				DefaultTableModel tempModel = new DefaultTableModel();
